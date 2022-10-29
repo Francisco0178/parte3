@@ -19,7 +19,7 @@ data:
   location: {{INGEST_DATA_LOCATION}}
   # Beyond `parquet` datasets, the `spark_sql` and `delta` formats are also natively supported for
   # use with Spark
-  format: {{INGEST_DATA_FORMAT|default('parquet')}}
+  format: {{INGEST_DATA_FORMAT|default('csv')}}
   # Datasets with other formats, including `csv`, can be used by implementing and
   # specifying a `custom_loader_method`
   custom_loader_method: steps.ingest.load_file_as_dataframe
@@ -37,7 +37,7 @@ data:
 # specify the dataset to use for batch scoring.  All params serve the same function as in `data`
 data_scoring:
   location: {{INGEST_SCORING_DATA_LOCATION}}
-  format: {{INGEST_SCORING_DATA_FORMAT|default('parquet')}}
+  format: {{INGEST_SCORING_DATA_FORMAT|default('csv')}}
   custom_loader_method: steps.ingest.load_file_as_dataframe
   sql: SELECT * FROM delta.`{{INGEST_SCORING_DATA_LOCATION}}`
 # Specifies the name of the column containing targets / labels for model training and evaluation
@@ -80,7 +80,7 @@ steps:
     # Specify the output path of the scored data from predict
     output_location: {{SCORED_OUTPUT_DATA_LOCATION}}
     # Specify the output format of the scored data from predict
-    output_format: {{SCORED_OUTPUT_DATA_FORMAT|default('parquet')}}
+    output_format: {{SCORED_OUTPUT_DATA_FORMAT|default('csv')}}
 metrics:
   # Defines custom performance metrics to compute during model training and evaluation
   custom:

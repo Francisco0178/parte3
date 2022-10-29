@@ -19,4 +19,4 @@ def create_dataset_filter(dataset: DataFrame) -> Series(bool):
     """
     # FIXME::OPTIONAL: implement post-split filtering on the dataframes, such as data cleaning.
 
-    return Series(dataset["charges"] > 0)
+    return Series(True, index=dataset.index)
